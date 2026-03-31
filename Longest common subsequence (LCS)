@@ -2,30 +2,34 @@
 using namespace std;
 using ll = long long;
 
-ll dp[1007][1007];
+int dp[1007][1007];
 
 int main(){
 
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
 
-    string n, m;
-    cin >> n >> m;
+     string s, t;
+     cin >> s >> t;
+     int n = s.size(); int m= t.size();
+     s = " " + s;
+     t = " " + t;
 
-    int len_n = n.size();
-    int len_m = m.size();
+     int i = 1; int j = 1;
 
-    for(int i = 1; i <= len_n; i++){
-        for(int j = 1; j <= len_m; j++){
-            if(n[i-1] == m[j-1]){
+     for(int i = 1; i <= n; i++){
+        for(int j = 1; j <= m; j++){
+            if(s[i] == t[j]){
                 dp[i][j] = dp[i-1][j-1] + 1;
-            } else {
+            }
+            else{
                 dp[i][j] = max(dp[i-1][j], dp[i][j-1]);
             }
         }
-    }
+     }
 
-    cout << dp[len_n][len_m];
+     cout << dp[n][m];
+
 
     return 0;
 }
